@@ -1,13 +1,11 @@
 <div class="app-list-container">
     <div class="app-list">
         <div class="app-list-header">
-            <span class="app-list-header-id">id</span>
-            <span class="app-list-header-name">name</span>
+            <span class="app-list-header-name">Heroes</span>
             
         </div>
         <ul class="app-list-content">
             <li *ngFor="let hero of heroes" class="app-list-content-element">
-                <span class="app-list-content-element-id">{{hero.id}}</span>
                 <span class="app-list-content-element-name">{{hero.name}}</span>
             </li>           
         </ul>

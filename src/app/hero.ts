@@ -1,40 +1,19 @@
 export interface Hero {
-    id: string,
-    name: string,
-    powerstats: {
-        intelligence: string,
-        strength: string,
-        speed: string,
-        durability: string,
-        power: string,
-        combat: string
-    },
-    biography: {
-        "full-name": string,
-        "alter-egos": string,
-        aliases: Array<string>,
-        "place-of-birth": string,
-        "first-appearance": string,
-        publisher: string,
-        alignment: string
-      },
-      appearance: {
-        gender: string,
-        race: string,
-        height: Array<string>,
-        weight: Array<string>,
-        "eye-color": string,
-        "hair-color": string
-      },
-      work: {
-        occupation: string,
-        base: string
-      },
-      connections: {
-        "group-affiliation": string,
-        relatives: string
-      },
-      image: {
-        url: string
-      }
+  name: string, 
+  height: string, 
+  mass: string, 
+  hair_color: string, 
+  skin_color: string, 
+  eye_color: string, 
+  birth_year: string, 
+  gender: string, 
+  homeworld: string, 
+  films: Array<string>, 
+  species: string, 
+  vehicles: Array<string>, 
+  starships: Array<string>, 
+  created: string, 
+  edited: string, 
+  url: string
+    
 }
