@@ -11,7 +11,7 @@ export class ListComponent implements OnInit {
   heroes: Hero[] = [];
 
   getHeroes(): void {
-    this.heroService.getHeroes().subscribe(res => this.heroes = res.results);
+    this.heroService.getHeroes().subscribe((res) => {this.heroes = res});
   }
 
   constructor(private heroService: HeroService) { }

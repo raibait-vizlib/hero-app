@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { Hero } from './hero';
 import { HttpClient } from '@angular/common/http';
 
@@ -11,7 +12,7 @@ export class HeroService {
 
   constructor(private http: HttpClient) { }
 
-  getHeroes(): Observable<Hero[]> { 
-    return this.http.get<Hero[]>(this.heroesUrl);
+  getHeroes(){
+    return this.http.get(this.heroesUrl).pipe(map((res:{results:Hero[] }) => res.results));
   }
 }
