@@ -3,7 +3,7 @@ import { Hero } from '../hero';
 import { HeroService } from '../hero.service';
 
 @Component({
-  selector: 'app-list',
+  selector: 'app-hero-list',
   templateUrl: './list.component.html',
   styleUrls: ['./list.component.scss']
 })
@@ -11,7 +11,7 @@ export class ListComponent implements OnInit {
   heroes: Hero[] = [];
 
   getHeroes(): void {
-    this.heroService.getHeroes().subscribe(res => this.heroes = res.results );
+    this.heroService.getHeroes().subscribe(res => this.heroes = res.results);
   }
 
   constructor(private heroService: HeroService) { }
