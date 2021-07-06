@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { ResponseList } from './response-list.interface';
-import { Hero } from './hero';
+import { Hero } from './hero.interface';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({

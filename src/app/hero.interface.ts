@@ -1,5 +1,3 @@
-import { Url } from "url";
-
 export interface Hero {
   name: string,
   height: string,

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
 import { finalize, tap } from 'rxjs/operators';
-import { Hero } from '../hero';
+import { Hero } from '../hero.interface';
 import { HeroService } from '../hero.service';
 
 @Component({
