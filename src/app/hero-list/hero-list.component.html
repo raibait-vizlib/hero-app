@@ -10,7 +10,7 @@
         </ul>
     </div>
     <div class="app-list-button-container">
-        <button (click)="handlePreviousPage()" [disabled]="!prevPage">{{"< Poprzednia"}}</button>
-        <button (click)="handleNextPage()" [disabled]="!nextPage">{{"Następna >"}}</button>
+        <button (click)="handlePreviousPage()" [disabled]="!prevPage || loading">< Previous</button>
+        <button (click)="handleNextPage()" [disabled]="!nextPage || loading">Next ></button>
     </div>
 </div>

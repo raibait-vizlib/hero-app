@@ -77,7 +77,7 @@
             cursor: pointer;
         }
         &:disabled:hover{
-            cursor:initial;
+            cursor:not-allowed;
             background-color: transparent;
         }   
     }

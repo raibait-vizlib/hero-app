@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { finalize, tap } from 'rxjs/operators';
 import { Hero } from '../hero';
 import { HeroService } from '../hero.service';
 
@@ -12,29 +14,43 @@ export class HeroListComponent implements OnInit {
   pageNumber: number = 1;
   nextPage: string;
   prevPage: string;
+  loading: boolean = false;
 
-  getHeroes(num): void {
-    this.heroService.getHeroes(num).subscribe((res) => {
+  getHeroes(pageNumber: number) {
+    this.loading = true;
+    return this.heroService.getHeroes(pageNumber).pipe(
+      tap((res) => {
       this.heroes = res.results;
       this.prevPage = res.previous;
       this.nextPage = res.next;
-    });
+    }), finalize(() => {
+      this.loading = false;
+    })
+    );
+  }
+  getNextHeroes(pageNumber: number): void {
+    this.getHeroes(pageNumber + 1).subscribe(() => {
+      this.pageNumber += 1;
+    })
+  }
+  getPrevHeroes(pageNumber: number): void {
+    this.getHeroes(pageNumber - 1).subscribe(() => {
+      this.pageNumber -= 1;
+    })
   }
 
   handleNextPage(): void {
-    this.pageNumber += 1;
-    this.getHeroes(this.pageNumber);
+    this.getNextHeroes(this.pageNumber);
   }
 
   handlePreviousPage(): void {
-    this.pageNumber -= 1;
-    this.getHeroes(this.pageNumber);
+    this.getPrevHeroes(this.pageNumber);
   }
 
   constructor(private heroService: HeroService) { }
 
   ngOnInit(): void {
-    this.getHeroes(this.pageNumber);
+    this.getHeroes(this.pageNumber).subscribe();
   }
-
 }
+
