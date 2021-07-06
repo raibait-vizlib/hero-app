@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { Response } from './response';
 import { Hero } from './hero';
 import { HttpClient } from '@angular/common/http';
 
@@ -11,8 +11,8 @@ export class HeroService {
   
   constructor(private http: HttpClient) { }
   
-  getHeroes(num){
+  getHeroes(num): Observable<Response<Hero>>{
     const heroesUrl = `https://swapi.dev/api/people/?page=${num}`;
-    return this.http.get(heroesUrl).pipe(map((res:{results:Hero[] }) => res.results));
+    return this.http.get<Response<Hero>>(heroesUrl);
   }
 }

@@ -10,23 +10,21 @@ import { HeroService } from '../hero.service';
 export class HeroListComponent implements OnInit {
   heroes: Hero[] = [];
   pageNumber: number = 1;
+  maxPage: number = 9;
+  minPage: number = 1;
 
   getHeroes(num): void {
-    this.heroService.getHeroes(num).subscribe((res) => {this.heroes = res});
+    this.heroService.getHeroes(num).subscribe((res) => {this.heroes = res.results});
   }
 
   handleNextPage(): void {
-    if(this.pageNumber < 8){
-      this.pageNumber += 1;
-      this.getHeroes(this.pageNumber);
-    }
+    this.pageNumber += 1;
+    this.getHeroes(this.pageNumber);
   }
 
   handlePreviousPage(): void {
-    if(this.pageNumber > 1){
-      this.pageNumber -= 1;
-      this.getHeroes(this.pageNumber);
-    }
+    this.pageNumber -= 1;
+    this.getHeroes(this.pageNumber);
   }
 
   constructor(private heroService: HeroService) { }
