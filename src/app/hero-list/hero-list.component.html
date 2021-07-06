@@ -9,4 +9,8 @@
             </li>           
         </ul>
     </div>
+    <div class="app-list-button-container">
+        <button (click)="handlePreviousPage()" [disabled]="pageNumber===1">{{"< Poprzednia"}}</button>
+        <button (click)="handleNextPage()" [disabled]="pageNumber===8">{{"Następna >"}}</button>
+    </div>
 </div>

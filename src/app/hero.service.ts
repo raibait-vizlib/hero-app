@@ -8,11 +8,11 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class HeroService {
-  private heroesUrl = 'https://swapi.dev/api/people/';
-
+  
   constructor(private http: HttpClient) { }
-
-  getHeroes(){
-    return this.http.get(this.heroesUrl).pipe(map((res:{results:Hero[] }) => res.results));
+  
+  getHeroes(num){
+    const heroesUrl = `https://swapi.dev/api/people/?page=${num}`;
+    return this.http.get(heroesUrl).pipe(map((res:{results:Hero[] }) => res.results));
   }
 }
