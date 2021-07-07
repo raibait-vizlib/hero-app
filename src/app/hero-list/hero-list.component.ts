@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { finalize, tap } from 'rxjs/operators';
 import { Hero } from '../hero.interface';
 import { HeroService } from '../hero.service';
@@ -10,10 +11,10 @@ import { HeroService } from '../hero.service';
 })
 export class HeroListComponent implements OnInit {
   heroes: Hero[] = [];
-  pageNumber: number = 1;
-  nextPage: string;
+  nextPage: string
   prevPage: string;
   loading: boolean = false;
+  previousPageNumber: number;
 
   getHeroes(pageNumber: number) {
     this.loading = true;
@@ -27,29 +28,46 @@ export class HeroListComponent implements OnInit {
     })
     );
   }
-  getNextHeroes(pageNumber: number): void {
-    this.getHeroes(pageNumber + 1).subscribe(() => {
-      this.pageNumber += 1;
-    })
-  }
-  getPrevHeroes(pageNumber: number): void {
-    this.getHeroes(pageNumber - 1).subscribe(() => {
-      this.pageNumber -= 1;
-    })
-  }
 
   handleNextPage(): void {
-    this.getNextHeroes(this.pageNumber);
+    this.router.navigate(
+      [],
+      {
+        relativeTo: this.route,
+        queryParams: {page: parseInt(this.route.snapshot.queryParams.page) + 1},
+        queryParamsHandling: 'merge'
+      }
+    )
   }
 
   handlePreviousPage(): void {
-    this.getPrevHeroes(this.pageNumber);
+    this.router.navigate(
+      [],
+      {
+        relativeTo: this.route,
+        queryParams: {page: parseInt(this.route.snapshot.queryParams.page) - 1},
+        queryParamsHandling: 'merge'
+      }
+    )
   }
 
-  constructor(private heroService: HeroService) { }
+  constructor(private heroService: HeroService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
-    this.getHeroes(this.pageNumber).subscribe();
+    this.route.queryParams.subscribe(res=> {
+      this.getHeroes(parseInt(res.page)).subscribe();
+    })
+
+    if(!this.route.snapshot.queryParams.page){
+      this.router.navigate(
+        [],
+        {
+          relativeTo: this.route,
+          queryParams: {page: 1},
+          queryParamsHandling: 'merge'
+        }
+    )
+    }
   }
 }
 
