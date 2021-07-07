@@ -1,4 +1,16 @@
 /* You can add global styles to this file, and also import other style files */
+@font-face {
+    font-family: StarWars;
+    src: url('assets/fonts/STJEDISE.ttf') format("truetype");
+}
+
+html { 
+    background: url("./assets/img/640760.jpg") no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+  }
 *{
     box-sizing: border-box;
     font-family: 'Roboto', sans-serif;

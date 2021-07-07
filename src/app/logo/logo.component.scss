@@ -1,4 +1,5 @@
 .app-logo-container{
+    font-family: "StarWars";
     width: 100%;
     height: fit-content;
     display: flex;
@@ -8,6 +9,7 @@
     margin-bottom: 50px;
     margin-top: 30px;
     font-weight:bolder;
-    color: #ffe81f ;
-    -webkit-text-stroke: 0.5px black;
+    color:#FFE81F ;
+    // -webkit-text-stroke: 0.5px black;
+    letter-spacing: 5px;
 }
