@@ -1,4 +1,11 @@
 .container{
     margin:0;
+    min-width:100vw;
+    min-height: 100vh;
     height: fit-content;  
+    background: url("../assets/img/background.jpg") no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 }
