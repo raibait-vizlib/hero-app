@@ -1,0 +1,47 @@
+.hero-detail-container{
+    width:100%;
+    height:100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hero-detail-content{
+    min-width: 650px;
+    max-width: 1200px;
+    width: 60vw;
+    height: 80vh;
+    background-color: rgba(255, 255, 255, 0.8);
+    border: 1px solid rgba(0,0,0,0.4);
+    border-radius: 6px 6px 0px 0px;
+}
+
+.hero-detail-name{
+    width: 100%;
+    height: 10%;
+    font-family: 'StarWars';
+    font-size: 4rem;
+    display: flex;
+    justify-content: center;
+}
+
+.hero-detail-description{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 20px;
+    margin-left: 10%;
+    span{
+        font: bold;
+        font-size: 2rem;
+        margin-bottom: 10px;
+    }
+    ul{
+        padding:0;
+    }
+    li{
+        list-style: none;
+        font-size: 1.5rem;
+        margin-bottom: 5px;
+    }
+}
