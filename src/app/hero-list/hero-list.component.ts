@@ -9,12 +9,12 @@ import { HeroService } from '../hero.service';
   templateUrl: './hero-list.component.html',
   styleUrls: ['./hero-list.component.scss']
 })
+
 export class HeroListComponent implements OnInit {
   heroes: Hero[] = [];
   nextPage: string
   prevPage: string;
   loading: boolean = false;
-  previousPageNumber: number;
 
   getHeroes(pageNumber: number) {
     this.loading = true;
@@ -70,4 +70,3 @@ export class HeroListComponent implements OnInit {
     }
   }
 }
-
