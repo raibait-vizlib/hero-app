@@ -16,7 +16,7 @@ export class HeroListComponent implements OnInit {
   prevPage: string;
   loading: boolean = false;
 
-  extractId(url: string){
+  extractId(url: string): number{
     const urlArr = url.split('/');
     return parseInt(urlArr[urlArr.length-2]);
   }
@@ -56,7 +56,7 @@ export class HeroListComponent implements OnInit {
     )
   }
 
-  onHeroClick(hero: Hero){
+  onHeroClick(hero: Hero): void{
     const heroId: number = this.extractId(hero.url);
     this.router.navigate([`heroes/${heroId}`]);
   }

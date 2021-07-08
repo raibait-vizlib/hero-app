@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { finalize, tap } from 'rxjs/operators';
 import { Hero } from '../hero.interface';
 import { HeroService } from '../hero.service';
+
 
 @Component({
   selector: 'app-hero-detail',
@@ -10,15 +12,17 @@ import { HeroService } from '../hero.service';
 })
 export class HeroDetailComponent implements OnInit {
   hero: Hero;
+  loading: boolean = false;
 
   constructor(private heroService: HeroService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
     this.route.params.subscribe(res => {
-      this.heroService.getHero(parseInt(res.id)).subscribe(res => {
-        this.hero = res;
-        console.log(this.hero);
-      });
+      this.loading = true;
+      this.heroService.getHero(parseInt(res.id)).pipe(
+        tap(res => this.hero = res),
+        finalize(() => this.loading = false)
+      ).subscribe();
     });
   }
 

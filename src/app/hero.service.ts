@@ -1,10 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Observable, of, forkJoin } from 'rxjs';
+import { Observable } from 'rxjs';
 import { ResponseList } from './response-list.interface';
 import { Hero } from './hero.interface';
 import { HttpClient } from '@angular/common/http';
-import { mergeMap } from 'rxjs/operators';
-
 
 @Injectable({
   providedIn: 'root'
