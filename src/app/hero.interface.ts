@@ -9,7 +9,7 @@ export interface Hero {
   gender: string,
   homeworld: string,
   films: Array<string>,
-  species: string,
+  species: Array<string>,
   vehicles: Array<string>,
   starships: Array<string>,
   created: string,

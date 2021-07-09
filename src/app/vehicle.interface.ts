@@ -11,8 +11,8 @@ export interface Vehicle {
     model: string,
     name: string,
     passengers: string,
-    pilots: string[],
-    films: string[],
+    pilots: Array<string>,
+    films: Array<string>,
     url:string,
     vehicle_class: string
 }

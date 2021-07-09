@@ -10,8 +10,8 @@ export interface Species {
     homeworld: string,
     language: string,
     name: string,
-    people: string[],
-    films: string[],
+    people: Array<string>,
+    films: Array<string>,
     skin_colors: string,
     url: string
 }
