@@ -1,89 +1,109 @@
-.app-list-container{
-    width: 100%;
+.app-list-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.app-list {
+  width: 700px;
+  min-height: 550px;
+  height: fit-content;
+  margin-bottom: 30px;
+}
+
+.app-list-header {
+  width: 100%;
+  height: 50px;
+  border: 1px solid rgba(0, 0, 0, 0.4);
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 6px 6px 0px 0px;
+  color: rgba(0, 0, 0, 0.8);
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  & > * {
     height: 100%;
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
+  }
 }
 
-.app-list{
-    width: 700px;
-    min-height: 550px;
-    height: fit-content;
-    margin-bottom: 30px;
+.app-list-content {
+  width: 100%;
+  margin: 0;
+  padding: 0;
 }
 
-.app-list-header{
-    width:100%;
-    height: 50px;    
-    border: 1px solid rgba(0,0,0,0.4);
-    background-color: rgba(255, 255, 255, 0.8);
-    border-radius: 6px 6px 0px 0px;
-    color: rgba(0,0,0,0.8);
-    font-size: 1.5rem;
+.app-list-content-element {
+  box-sizing: border-box;
+  width: 100%;
+  height: 50px;
+  border: 1px solid rgba(0, 0, 0, 0.4);
+  background-color: rgba(255, 255, 255, 0.6);
+  color: rgba(0, 0, 0, 0.8);
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  &:hover {
+    background-color: rgba(0, 0, 200, 0.2);
+    color: white;
+    cursor: pointer;
+  }
+  & > * {
+    height: 100%;
     display: flex;
-    align-items: center;
     justify-content: center;
-    &>*{
-        height: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
+    align-items: center;
+    font-size: 1.25rem;
+  }
 }
 
-.app-list-content{
-    width: 100%;
-    margin:0;
-    padding:0;
-}
-
-.app-list-content-element{
-    box-sizing: border-box;
-    width: 100%;
+.app-list-button-container {
+  & > button {
+    margin-left: 10px;
+    margin-right: 10px;
     height: 50px;
-    border: 1px solid rgba(0,0,0,0.4);
+    width: 120px;
+    background-color: transparent;
+    border: 1px solid rgba(0, 0, 0, 0.4);
     background-color: rgba(255, 255, 255, 0.6);
-    color:rgba(0,0,0,0.8);
-    list-style: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    &:hover{
-        background-color: rgba(0, 0, 200, 0.2);
-        color: white;
-        cursor: pointer;
+    border-radius: 4px;
+    font-size: 1rem;
+    user-select: none;
+    &:hover {
+      background-color: rgba(0, 0, 200, 0.2);
+      color: white;
+      cursor: pointer;
     }
-    &>*{
-        height: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-size: 1.25rem;
+    &:disabled:hover {
+      cursor: not-allowed;
+      background-color: transparent;
     }
+  }
 }
 
-.app-list-button-container{
-    &>button{
-        margin-left:10px;
-        margin-right: 10px;
-        height: 50px;
-        width: 120px;
-        background-color: transparent;
-        border: 1px solid rgba(0,0,0,0.4);
-        background-color: rgba(255, 255, 255, 0.6);
-        border-radius: 4px;
-        font-size: 1rem;
-        user-select: none;
-        &:hover{
-            background-color: rgba(0, 0, 200, 0.2);
-            color: white;
-            cursor: pointer;
-        }
-        &:disabled:hover{
-            cursor:not-allowed;
-            background-color: transparent;
-        }   
+.app-list-search-wrapper {
+  width: 700px;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 30px;
+
+  & > input {
+    background-color: rgba(255, 255, 255, 0.8);
+    border: 1px solid rgba(0, 0, 0, 0.4);
+    border-radius: 6px;
+    padding-left: 10px;
+    height: 40px;
+    font-size: 1.25rem;
+    &:focus {
+      outline: none;
     }
+  }
 }
