@@ -1,4 +1,4 @@
-export interface Films {
+export interface Film {
     characters: Array<string>,
     created: string,
     director: string,
