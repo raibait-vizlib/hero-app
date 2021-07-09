@@ -13,8 +13,8 @@ export interface Starship {
     model: string,
     name: string,
     passengers: string,
-    films: string[],
-    pilots: string[],
+    films: Array<string>,
+    pilots: Array<string>,
     starship_class: string,
     url: string
 }
