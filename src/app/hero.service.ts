@@ -115,14 +115,15 @@ export class HeroService {
         if(hero.species.length){
           return forkJoin(hero.species.map(spec => this.getSpecies(spec))).pipe(
             map((res: Species[]) => {
-              const filmTitles = res.map(specie => specie.name);
+              const speciesTitles = res.map(spec => spec.name);
               return{
                 ...hero, 
-                films: filmTitles,
+                species: speciesTitles,
               }
             }),
           )
         }else{
+          hero.species = ['Human'];
           return of(hero);
         }
       }),
