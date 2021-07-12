@@ -16,7 +16,6 @@ export class HeroListComponent implements OnInit{
   nextPage: string
   prevPage: string;
   loading: boolean = false;
-  emptySearch: boolean = false;
   search = new FormControl('');
 
   handleNextPage(): void {
@@ -47,22 +46,14 @@ export class HeroListComponent implements OnInit{
     this.loading = true;
     this.route.queryParams
     .pipe(
-      switchMap(res=> {
-        return this.heroService.getHeroes(res.page, res.search);
+      switchMap(params=> {
+        return this.heroService.getHeroes(params.page, params.search);
       })
     )
-    .subscribe((res) => {
-      if(res.count > 0){
-        this.heroes = res.results;
-        this.prevPage = res.previous;
-        this.nextPage = res.next;
-        this.emptySearch = false;
-      } else {
-        this.heroes = []
-        this.prevPage = null;
-        this.nextPage = null;
-        this.emptySearch = true;
-      }
+    .subscribe((heroList) => {
+      this.heroes = heroList.results;
+      this.prevPage = heroList.previous;
+      this.nextPage = heroList.next;
       this.loading = false;
     })
 
@@ -71,12 +62,12 @@ export class HeroListComponent implements OnInit{
       debounceTime(500),
       distinctUntilChanged()
     )
-    .subscribe(res=> {
+    .subscribe(searchQuery=> {
       this.router.navigate(
         [],
         {
           relativeTo: this.route,
-          queryParams: {page: 1, search: res},
+          queryParams: {page: 1, search: searchQuery},
           queryParamsHandling: 'merge'
         }
     )

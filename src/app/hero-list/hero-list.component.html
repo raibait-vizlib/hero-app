@@ -6,7 +6,7 @@
         <div class="app-list-header">
             <span class="app-list-header-name">Heroes</span>      
         </div>
-        <div class="app-list-empty" *ngIf="emptySearch">
+        <div class="app-list-empty" *ngIf="!heroes.length">
             There are no heroes that match your input.
         </div>
         <ul class="app-list-content">
