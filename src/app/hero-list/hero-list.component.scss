@@ -5,9 +5,8 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-}
-
-.app-list {
+  
+ .app-list {
   width: 700px;
   min-height: 550px;
   height: fit-content;
@@ -25,7 +24,7 @@
   font-weight: bold;
   color: rgba(255, 255, 255, 0.8);
 }
-
+  
 .app-list-header {
   width: 100%;
   height: 50px;
@@ -44,7 +43,18 @@
     align-items: center;
   }
 }
-
+  
+.app-list-loader-container {
+  width: 700px;
+  height: 500px;
+  border: 1px solid rgba(0, 0, 0, 0.4);
+  background-color: rgba(255, 255, 255, 0.6);
+  border-radius: 6px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+ 
 .app-list-content {
   width: 100%;
   margin: 0;
@@ -56,6 +66,7 @@
   width: 100%;
   height: 50px;
   border: 1px solid rgba(0, 0, 0, 0.4);
+  border-radius: 6px;
   background-color: rgba(255, 255, 255, 0.6);
   color: rgba(0, 0, 0, 0.8);
   list-style: none;
@@ -63,8 +74,9 @@
   align-items: center;
   justify-content: center;
   &:hover {
-    background-color: rgba(0, 0, 200, 0.2);
+    background-color: rgba(4, 4, 112, 0.5);
     color: white;
+    font-weight: 500;
     cursor: pointer;
   }
   & > * {
@@ -73,30 +85,6 @@
     justify-content: center;
     align-items: center;
     font-size: 1.25rem;
-  }
-}
-
-.app-list-button-container {
-  & > button {
-    margin-left: 10px;
-    margin-right: 10px;
-    height: 50px;
-    width: 120px;
-    background-color: transparent;
-    border: 1px solid rgba(0, 0, 0, 0.4);
-    background-color: rgba(255, 255, 255, 0.6);
-    border-radius: 4px;
-    font-size: 1rem;
-    user-select: none;
-    &:hover {
-      background-color: rgba(0, 0, 200, 0.2);
-      color: white;
-      cursor: pointer;
-    }
-    &:disabled:hover {
-      cursor: not-allowed;
-      background-color: transparent;
-    }
   }
 }
 
