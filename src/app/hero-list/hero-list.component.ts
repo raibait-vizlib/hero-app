@@ -16,6 +16,11 @@ export class HeroListComponent implements OnInit {
   prevPage: string;
   loading: boolean = false;
 
+  extractId(url: string): number{
+    const urlArr = url.split('/');
+    return parseInt(urlArr[urlArr.length-2]);
+  }
+
   getHeroes(pageNumber: number) {
     this.loading = true;
     return this.heroService.getHeroes(pageNumber).pipe(
@@ -49,6 +54,11 @@ export class HeroListComponent implements OnInit {
         queryParamsHandling: 'merge'
       }
     )
+  }
+
+  onHeroClick(hero: Hero): void{
+    const heroId: number = this.extractId(hero.url);
+    this.router.navigate([`heroes/${heroId}`]);
   }
 
   constructor(private heroService: HeroService, private route: ActivatedRoute, private router: Router) { }
