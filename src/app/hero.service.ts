@@ -45,7 +45,7 @@ export class HeroService {
       return this.http.get<Vehicle>(vehicleUrl);
   }
 
-  getHero(heroId: number): Observable<any>{
+  getHero(heroId: number): Observable<Hero>{
     const heroUrl = `https://swapi.dev/api/people/${heroId}`
     return this.http.get<any>(heroUrl).pipe(
       mergeMap((hero: Hero) => {
