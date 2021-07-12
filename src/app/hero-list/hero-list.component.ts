@@ -16,6 +16,7 @@ export class HeroListComponent implements OnInit{
   nextPage: string
   prevPage: string;
   loading: boolean = false;
+  emptySearch: boolean = false;
   search = new FormControl('');
 
   handleNextPage(): void {
@@ -51,9 +52,17 @@ export class HeroListComponent implements OnInit{
       })
     )
     .subscribe((res) => {
-      this.heroes = res.results;
-      this.prevPage = res.previous;
-      this.nextPage = res.next;
+      if(res.count > 0){
+        this.heroes = res.results;
+        this.prevPage = res.previous;
+        this.nextPage = res.next;
+        this.emptySearch = false;
+      } else {
+        this.heroes = []
+        this.prevPage = null;
+        this.nextPage = null;
+        this.emptySearch = true;
+      }
       this.loading = false;
     })
 
@@ -63,7 +72,6 @@ export class HeroListComponent implements OnInit{
       distinctUntilChanged()
     )
     .subscribe(res=> {
-      console.log(res);
       this.router.navigate(
         [],
         {
