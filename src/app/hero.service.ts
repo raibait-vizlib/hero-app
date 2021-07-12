@@ -20,8 +20,8 @@ export class HeroService {
   
   constructor(private http: HttpClient) { }
   
-  getHeroes(pageNumber: number): Observable<ResponseList<Hero>>{
-    const heroesUrl = `https://swapi.dev/api/people/?page=${pageNumber}`;
+  getHeroes(pageNumber: number, searchQuery: string): Observable<ResponseList<Hero>>{
+    const heroesUrl = `https://swapi.dev/api/people/?${searchQuery ? `search=${searchQuery}&` : ''}page=${pageNumber}`;
     return this.http.get<ResponseList<Hero>>(heroesUrl);
   }
 

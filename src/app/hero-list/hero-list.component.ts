@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { finalize, tap } from 'rxjs/operators';
+import { debounceTime, distinct, distinctUntilChanged, switchMap } from 'rxjs/operators';
 import { Hero } from '../hero.interface';
 import { HeroService } from '../hero.service';
 
@@ -10,17 +11,18 @@ import { HeroService } from '../hero.service';
   styleUrls: ['./hero-list.component.scss']
 })
 
-export class HeroListComponent implements OnInit {
+export class HeroListComponent implements OnInit{
   heroes: Hero[] = [];
   nextPage: string
   prevPage: string;
   loading: boolean = false;
-
+  search = new FormControl('');
+  
   extractId(url: string): number{
     const urlArr = url.split('/');
     return parseInt(urlArr[urlArr.length-2]);
   }
-
+  
   getHeroes(pageNumber: number) {
     this.loading = true;
     return this.heroService.getHeroes(pageNumber).pipe(
@@ -64,8 +66,34 @@ export class HeroListComponent implements OnInit {
   constructor(private heroService: HeroService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
-    this.route.queryParams.subscribe(res=> {
-      this.getHeroes(parseInt(res.page)).subscribe();
+    this.loading = true;
+    this.route.queryParams
+    .pipe(
+      switchMap(params=> {
+        return this.heroService.getHeroes(params.page, params.search);
+      })
+    )
+    .subscribe((heroList) => {
+      this.heroes = heroList.results;
+      this.prevPage = heroList.previous;
+      this.nextPage = heroList.next;
+      this.loading = false;
+    })
+
+    this.search.valueChanges
+    .pipe(
+      debounceTime(500),
+      distinctUntilChanged()
+    )
+    .subscribe(searchQuery=> {
+      this.router.navigate(
+        [],
+        {
+          relativeTo: this.route,
+          queryParams: {page: 1, search: searchQuery},
+          queryParamsHandling: 'merge'
+        }
+    )
     })
 
     if(!this.route.snapshot.queryParams.page){
