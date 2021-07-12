@@ -6,7 +6,10 @@
         <div class="app-list-header">
             <span class="app-list-header-name">Heroes</span>      
         </div>
-        <div class="app-list-empty" *ngIf="!heroes.length">
+        <div class="app-list-loader-container" *ngIf="loading && !heroes.length">
+            <app-loader></app-loader>
+        </div>
+        <div class="app-list-empty" *ngIf="!loading && !heroes.length">
             There are no heroes that match your input.
         </div>
         <ul class="app-list-content">
@@ -14,9 +17,6 @@
                 <span class="app-list-content-element-name">{{hero.name}}</span>
             </li>           
         </ul>
-    </div>
-    <div class="app-list-loader-container" *ngIf="loading">
-        <app-loader></app-loader>
     </div>
     <div class="app-button-container">
         <button (click)="handlePreviousPage()" [disabled]="!prevPage || loading">< Previous</button>

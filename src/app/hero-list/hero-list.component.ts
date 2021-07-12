@@ -23,19 +23,6 @@ export class HeroListComponent implements OnInit{
     return parseInt(urlArr[urlArr.length-2]);
   }
   
-  getHeroes(pageNumber: number) {
-    this.loading = true;
-    return this.heroService.getHeroes(pageNumber).pipe(
-      tap((res) => {
-      this.heroes = res.results;
-      this.prevPage = res.previous;
-      this.nextPage = res.next;
-    }), finalize(() => {
-      this.loading = false;
-    })
-    );
-  }
-
   handleNextPage(): void {
     this.router.navigate(
       [],
