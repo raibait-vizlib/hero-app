@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { debounceTime, distinct, distinctUntilChanged, switchMap } from 'rxjs/operators';
+import { debounceTime, distinctUntilChanged, switchMap, tap } from 'rxjs/operators';
 import { Hero } from '../hero.interface';
 import { HeroService } from '../hero.service';
 
@@ -53,9 +53,14 @@ export class HeroListComponent implements OnInit{
   constructor(private heroService: HeroService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
-    this.loading = true;
     this.route.queryParams
     .pipe(
+      tap(() => {
+        this.heroes = [];
+        this.prevPage = null;
+        this.nextPage = null;
+        this.loading = true;
+      }),
       switchMap(params=> {
         return this.heroService.getHeroes(params.page, params.search);
       })
