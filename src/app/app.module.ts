@@ -9,6 +9,7 @@ import { LogoComponent } from './logo/logo.component';
 import { HeroListComponent } from './hero-list/hero-list.component';
 import { HeroDetailComponent } from './hero-detail/hero-detail.component';
 import { LoaderComponent } from './loader/loader.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { LoaderComponent } from './loader/loader.component';
     LogoComponent,
     HeroListComponent,
     HeroDetailComponent,
-    LoaderComponent
+    LoaderComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,

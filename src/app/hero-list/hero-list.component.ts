@@ -24,6 +24,7 @@ export class HeroListComponent implements OnInit{
   }
   
   handleNextPage(): void {
+    this.heroes = [];
     this.router.navigate(
       [],
       {
@@ -35,6 +36,7 @@ export class HeroListComponent implements OnInit{
   }
 
   handlePreviousPage(): void {
+    this.heroes = [];
     this.router.navigate(
       [],
       {
@@ -53,10 +55,12 @@ export class HeroListComponent implements OnInit{
   constructor(private heroService: HeroService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
-    this.loading = true;
     this.route.queryParams
     .pipe(
       switchMap(params=> {
+        this.prevPage = null;
+        this.nextPage = null;
+        this.loading = true;
         return this.heroService.getHeroes(params.page, params.search);
       })
     )
