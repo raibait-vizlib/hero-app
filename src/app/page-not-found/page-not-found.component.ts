@@ -10,7 +10,7 @@ export class PageNotFoundComponent {
   constructor(private route: ActivatedRoute, private router: Router) {
   }
 
-  handleReturn(){
+  handleReturn(): void{
     this.router.navigate(
       ['/heroes'],
       {
@@ -20,8 +20,4 @@ export class PageNotFoundComponent {
       }
     )
   }
-
-  ngOnInit(): void {
-  }
-
 }

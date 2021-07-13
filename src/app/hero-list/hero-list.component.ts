@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { debounceTime, distinct, distinctUntilChanged, switchMap } from 'rxjs/operators';
+import { debounceTime, distinctUntilChanged, switchMap, tap } from 'rxjs/operators';
 import { Hero } from '../hero.interface';
 import { HeroService } from '../hero.service';
 
@@ -24,7 +24,6 @@ export class HeroListComponent implements OnInit{
   }
   
   handleNextPage(): void {
-    this.heroes = [];
     this.router.navigate(
       [],
       {
@@ -36,7 +35,6 @@ export class HeroListComponent implements OnInit{
   }
 
   handlePreviousPage(): void {
-    this.heroes = [];
     this.router.navigate(
       [],
       {
@@ -57,6 +55,7 @@ export class HeroListComponent implements OnInit{
   ngOnInit(): void {
     this.route.queryParams
     .pipe(
+      tap(() => this.heroes = []),
       switchMap(params=> {
         this.prevPage = null;
         this.nextPage = null;
