@@ -55,11 +55,13 @@ export class HeroListComponent implements OnInit{
   ngOnInit(): void {
     this.route.queryParams
     .pipe(
-      tap(() => this.heroes = []),
-      switchMap(params=> {
+      tap(() => {
+        this.heroes = [];
         this.prevPage = null;
         this.nextPage = null;
         this.loading = true;
+      }),
+      switchMap(params=> {
         return this.heroService.getHeroes(params.page, params.search);
       })
     )
